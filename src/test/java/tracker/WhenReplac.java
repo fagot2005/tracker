@@ -27,4 +27,32 @@ public class WhenReplac {
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
     }
+
+    @Test
+    public void whenReplaceItemStartUI() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                item.getId(), // id сохраненной заявки в объект tracker.
+                "replaced item"
+        };
+        StartUI.repleseItem(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(item.getId());
+        assertThat(replaced.getName(), is("replaced item"));
+    }
+
+    @Test
+    public void whenDeleteItemStartUI() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                item.getId(), // id сохраненной заявки в объект tracker.
+                "deleted item"
+        };
+        StartUI.deleteItem(new StubInput(answers), tracker);
+        Item deleted = tracker.findById(item.getId());
+        assertThat(deleted.getName(), is(nullValue()));
+    }
 }
