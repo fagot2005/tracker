@@ -2,8 +2,8 @@ package tracker;
 
 public class StartUI {
     public static void criateItem(Input input, Tracker tracker) {
-        System.out.println("");
-        System.out.println("===Greate new Item===");
+//        System.out.println("");
+//        System.out.println("===Greate new Item===");
         String name = input.askStr("Enter Name: ");
         Item item = new Item(name);
         tracker.add(item);
@@ -64,47 +64,51 @@ public class StartUI {
         }
     }
 
-    public void unit(Input input, Tracker tracker) {
+    public void unit(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
-            this.showMenu();
+            this.showMenu(actions);
             System.out.println("");
-            int selest = Integer.valueOf(input.askStr("==Select=="));
-            if (selest == 0) {
-                StartUI.criateItem(input, tracker);
-            } else if (selest == 1) {
-                StartUI.showAllItem(input, tracker);
-            } else if (selest == 2) {
-                StartUI.repleseItem(input, tracker);
-            } else if (selest == 3) {
-                StartUI.deleteItem(input, tracker);
-            } else if (selest == 4) {
-                StartUI.foundItemById(input, tracker);
-            } else if (selest == 5) {
-                StartUI.foundItemByName(input, tracker);
-            } else if (selest == 6) {
-                run = false;
-            } else {
-                System.out.println("The menu item is not correct, select from 1-6");
-                run = true;
-            }
+            int selest = input.askInt("Select: ");
+            UserAction action = actions[selest];
+            run = action.excecute(input, tracker);
+            //Integer.valueOf(input.askStr("==Select=="));
+//            if (selest == 0) {
+//                StartUI.criateItem(input, tracker);
+//            } else if (selest == 1) {
+//                StartUI.showAllItem(input, tracker);
+//            } else if (selest == 2) {
+//                StartUI.repleseItem(input, tracker);
+//            } else if (selest == 3) {
+//                StartUI.deleteItem(input, tracker);
+//            } else if (selest == 4) {
+//                StartUI.foundItemById(input, tracker);
+//            } else if (selest == 5) {
+//                StartUI.foundItemByName(input, tracker);
+//            } else if (selest == 6) {
+//                run = false;
+//            } else {
+//                System.out.println("The menu item is not correct, select from 1-6");
+//                run = true;
+//            }
         }
     }
 
-    private void showMenu() {
-        System.out.println("Menu");
-        System.out.println("0. Add");
-        System.out.println("1. Show");
-        System.out.println("2. Edit");
-        System.out.println("3. Delete");
-        System.out.println("4. Find ID");
-        System.out.println("5. Find Name");
-        System.out.println("6. Exit");
+    private void showMenu(UserAction[] actions) {
+        System.out.println("Menu. ");
+        for (int i = 0; i<actions.length; i++) {
+            System.out.println(i + ". " + actions[i].name());
+        }
+        //System.out.println("Menu");
+
     }
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().unit(input, tracker);
+        UserAction[] actions = { new CreateAction(), new ShowAllItems(),
+                new EditItemById(), new DeleteItemById(), new FoundItemById(),
+                new FoundItemByName(), new Exit()};
+        new StartUI().unit(input, tracker, actions);
     }
 }

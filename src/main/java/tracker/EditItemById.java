@@ -9,7 +9,9 @@ public class EditItemById implements UserAction {
     @Override
     public boolean excecute(Input input, Tracker tracker) {
         String id = input.askStr("Enter ID: ");
+        String newName = input.askStr("New name Item: ");
         Item item = new Item(id);
+        item.setName(newName);
         tracker.replase(id, item);
         return true;
     }
