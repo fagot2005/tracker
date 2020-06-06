@@ -12,7 +12,11 @@ public class EditItemById implements UserAction {
         String newName = input.askStr("New name Item: ");
         Item item = new Item(id);
         item.setName(newName);
-        tracker.replase(id, item);
+        if (tracker.replase(id, item)) {
+            System.out.println("Replase was succesfully");
+        } else {
+            System.out.println("ERROR");
+        }
         return true;
     }
 }
