@@ -24,10 +24,10 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
+                new CreateAction(output),
                 new Exit()
         };
-        new StartUI().unit(in, tracker, actions);
+        new StartUI(output).unit(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
@@ -45,7 +45,7 @@ public class StartUITest {
                 new EditItemById(),
                 new Exit()
         };
-        new StartUI().unit(in, tracker, actions);
+        new StartUI(output).unit(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(replacedName));
     }
 
@@ -62,7 +62,24 @@ public class StartUITest {
                 new DeleteItemById(),
                 new Exit()
         };
-        new StartUI().unit(in, tracker, actions);
+        new StartUI(output).unit(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
+
+    @Test
+    public void whenExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new Exit()
+        };
+        new StartUI(out).unit(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. Exit" + System.lineSeparator()
+        ));
+
 }

@@ -1,6 +1,12 @@
 package tracker;
 
 public class StartUI {
+private final Output out;
+
+    public StartUI(Output out) {
+        this.out = out;
+    }
+
     public static void criateItem(Input input, Tracker tracker) {
 //        System.out.println("");
 //        System.out.println("===Greate new Item===");
@@ -106,9 +112,9 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        UserAction[] actions = { new CreateAction(), new ShowAllItems(),
+        UserAction[] actions = { new CreateAction(out), new ShowAllItems(),
                 new EditItemById(), new DeleteItemById(), new FoundItemById(),
                 new FoundItemByName(), new Exit()};
-        new StartUI().unit(input, tracker, actions);
+        new StartUI(out).unit(input, tracker, actions);
     }
 }

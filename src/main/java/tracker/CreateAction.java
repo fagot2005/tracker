@@ -1,6 +1,12 @@
 package tracker;
 
 public class CreateAction implements UserAction {
+public final Output out;
+
+    public CreateAction(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return " Create new Item";
