@@ -9,8 +9,6 @@ public class DeleteItemById implements UserAction {
     @Override
     public boolean excecute(Input input, Tracker tracker) {
         String name = input.askStr("Enter ID: ");
-        //Item item = new Item(name);
-        tracker.delete(name);
-        return true;
+        return tracker.delete(name)?true:false;
     }
 }
