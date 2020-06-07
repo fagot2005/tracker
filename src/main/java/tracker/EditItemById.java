@@ -10,7 +10,7 @@ public class EditItemById implements UserAction {
     public boolean excecute(Input input, Tracker tracker) {
         String id = input.askStr("Enter ID: ");
         String newName = input.askStr("New name Item: ");
-        Item item = new Item(id);
+        Item item = new Item(newName);
         if (tracker.replase(id, item)) {
             System.out.println("Replase was succesfully");
         } else {

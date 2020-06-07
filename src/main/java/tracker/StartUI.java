@@ -105,11 +105,10 @@ private final Output out;
         for (int i = 0; i<actions.length; i++) {
             System.out.println(i + ". " + actions[i].name());
         }
-        //System.out.println("Menu");
-
     }
 
     public static void main(String[] args) {
+        Output out = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = { new CreateAction(out), new ShowAllItems(),

@@ -19,8 +19,9 @@ public class StartUITest {
 
     @Test
     public void whenCreateItem() {
+        Output output = new ConsoleOutput();
         Input in = new StubInput(
-                new String[] {"0", "Item name", "1"}
+                new String[]{"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -33,13 +34,14 @@ public class StartUITest {
 
     @Test
     public void whenReplaceItem() {
+        Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
         /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Replaced item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
         Input in = new StubInput(
-                new String[] {"0", replacedName, "1"}
+                new String[]{"0", replacedName, "1"}
         );
         UserAction[] actions = {
                 new EditItemById(),
@@ -51,12 +53,13 @@ public class StartUITest {
 
     @Test
     public void whenDeleteItem() {
+        Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
         /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Deleted item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         Input in = new StubInput(
-                new String[] {"0", item.getId() /* входные параметры для DeleteAction */, "1"}
+                new String[]{"0", item.getId() /* входные параметры для DeleteAction */, "1"}
         );
         UserAction[] actions = {
                 new DeleteItemById(),
@@ -81,5 +84,6 @@ public class StartUITest {
                 "Menu." + System.lineSeparator() +
                         "0. Exit" + System.lineSeparator()
         ));
+    }
 
 }
