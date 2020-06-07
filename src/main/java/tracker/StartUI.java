@@ -1,15 +1,13 @@
 package tracker;
 
 public class StartUI {
-private final Output out;
+    private final Output out;
 
     public StartUI(Output out) {
         this.out = out;
     }
 
     public static void criateItem(Input input, Tracker tracker) {
-//        System.out.println("");
-//        System.out.println("===Greate new Item===");
         String name = input.askStr("Enter Name: ");
         Item item = new Item(name);
         tracker.add(item);
@@ -70,33 +68,18 @@ private final Output out;
         }
     }
 
-    public void unit(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             System.out.println("");
-            int selest = input.askInt("Select: ");
-            UserAction action = actions[selest];
+            int select = input.askInt("Select: ");
+            if (select < 0 || select >= actions.length) {
+                out.prinln("Wrong input, you can select: 0 .. " + (actions.length - 1));
+                continue;
+            }
+            UserAction action = actions[select];
             run = action.excecute(input, tracker);
-            //Integer.valueOf(input.askStr("==Select=="));
-//            if (selest == 0) {
-//                StartUI.criateItem(input, tracker);
-//            } else if (selest == 1) {
-//                StartUI.showAllItem(input, tracker);
-//            } else if (selest == 2) {
-//                StartUI.repleseItem(input, tracker);
-//            } else if (selest == 3) {
-//                StartUI.deleteItem(input, tracker);
-//            } else if (selest == 4) {
-//                StartUI.foundItemById(input, tracker);
-//            } else if (selest == 5) {
-//                StartUI.foundItemByName(input, tracker);
-//            } else if (selest == 6) {
-//                run = false;
-//            } else {
-//                System.out.println("The menu item is not correct, select from 1-6");
-//                run = true;
-//            }
         }
     }
 
@@ -114,6 +97,6 @@ private final Output out;
         UserAction[] actions = { new CreateAction(out), new ShowAllItems(),
                 new EditItemById(), new DeleteItemById(), new FoundItemById(),
                 new FoundItemByName(), new Exit()};
-        new StartUI(out).unit(input, tracker, actions);
+        new StartUI(out).init(input, tracker, actions);
     }
 }
