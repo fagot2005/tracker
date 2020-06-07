@@ -11,7 +11,6 @@ public class EditItemById implements UserAction {
         String id = input.askStr("Enter ID: ");
         String newName = input.askStr("New name Item: ");
         Item item = new Item(id);
-        item.setName(newName);
         if (tracker.replase(id, item)) {
             System.out.println("Replase was succesfully");
         } else {
