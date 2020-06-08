@@ -41,14 +41,14 @@ public class StartUITest {
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
         Input in = new StubInput(
-                new String[]{"0", replacedName, "1"}
+                new String[]{"0", item.getId(), replacedName, "1"}
         );
         UserAction[] actions = {
                 new EditItemById(),
                 new Exit()
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(replacedName));
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
     @Test
@@ -89,20 +89,37 @@ public class StartUITest {
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();
+        UserAction[] actions = {new Exit()};
         Input in = new StubInput(
-                new String[]{"hjg", "6"});/* Пункты меню: неверный, верный.*/
-                Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(out), new ShowAllItems(),
-                new EditItemById(), new DeleteItemById(), new FoundItemById(),
-                new FoundItemByName(), new Exit()};
+                new String[]{"10", "0"});/* Пункты меню: неверный, верный.*/
+        Tracker tracker = new Tracker();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 String.format(
-                        "Menu.%n" + System.lineSeparator()
-                                + "0. Exit%n" + System.lineSeparator()
-                                + "Wrong input, you can select: 0 .. 0%n" + System.lineSeparator()
-                                + "Menu.%n" + System.lineSeparator()
+                        "Menu.%n"
                                 + "0. Exit%n"
+                                + "Wrong input, you can select: 0 .. 0%n"
+                                + "Menu.%n"
+                                + "0. Exit%n"
+                )
+        ));
+    }
+
+    @Test
+    public void whenInvalidExit2() {
+        Output out = new StubOutput();
+        UserAction[] actions = {new Exit()};
+        Input in = new StubInput(
+                new String[]{"10", "0"});
+        Tracker tracker = new Tracker();
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                String.format(
+                        "Menu.%n"
+                                + "0.  Exit %n"
+                                + "Wrong input, you can select: 0 .. 0%n"
+                                + "Menu.%n"
+                                + "0.  Exit %n"
                 )
         ));
     }
