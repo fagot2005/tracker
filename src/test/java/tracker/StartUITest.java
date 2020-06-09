@@ -146,4 +146,59 @@ public class StartUITest {
         int selected = input.askInt("Enter menu:");
         assertThat(selected, is(1));
     }
+
+    @Test
+    public void FindAllAction() {
+        Output output = new ConsoleOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New item"));
+        Input in = new StubInput(
+                new String[]{"0", item.getId(), "2"}
+        );
+        UserAction[] actions = {
+                new ShowAllItems(),
+                new Exit()
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(tracker.findAll(), is("New item"));
+    }
+
+
+
+    @Test
+    public void FindByNameAction() {
+        Output output = new ConsoleOutput();
+        Tracker tracker = new Tracker();
+        /* Добавим в tracker новую заявку */
+
+        Item item = tracker.add(new Item("New item"));
+        String foundName = "New item";
+                Input in = new StubInput(
+                new String[]{"0", foundName , "1"}
+        );
+        UserAction[] actions = {
+                new FoundItemByName(),
+                new Exit()
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(tracker.findByName(item.getId()), is(foundName));
+    }
+
+    @Test
+    public void FindByIdAction() {
+        Output output = new ConsoleOutput();
+        Tracker tracker = new Tracker();
+        /* Добавим в tracker новую заявку */
+        Item item = tracker.add(new Item("New Item"));
+        //        String replacedName = "New item name";
+        Input in = new StubInput(
+                new String[]{"0", item.getId(), "1"}
+        );
+        UserAction[] actions = {
+                new FoundItemById(),
+                new Exit()
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(item.getId()));
+    }
 }
