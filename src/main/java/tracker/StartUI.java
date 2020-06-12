@@ -1,5 +1,8 @@
 package tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     private final Output out;
 
@@ -37,11 +40,12 @@ public class StartUI {
     public static void showAllItem(Input input, Tracker tracker) {
         System.out.println("");
         System.out.println("===Show all Item===");
-        Item[] itemsNew = tracker.findAll();
+        List<Item> itemsNew = tracker.findAll();
+        //Item[] itemsNew = tracker.findAll();
         System.out.println("===Id====          ===Name===");
-        for (int index = 0; index < itemsNew.length; index++) {
-            if (itemsNew[index] != null) {
-                System.out.println(itemsNew[index].getId() + "   " + itemsNew[index].getName());
+        for (int index = 0; index < itemsNew.size(); index++) {
+            if (itemsNew.get(index) != null) {
+                System.out.println(itemsNew.get(index).getId() + "   " + itemsNew.get(index).getName());
             }
         }
     }
@@ -58,12 +62,12 @@ public class StartUI {
         System.out.println("");
         System.out.println("===Found Item by Name===");
         String name = input.askStr("Enter Name: ");
-        Item[] item = tracker.findByName(name);
+        List<Item> item = tracker.findByName(name);
         System.out.println("===Show Item by Name===");
         System.out.println("===Id====          ===Name===");
-        for (int index = 0; index < item.length; index++) {
-            if (item[index] != null) {
-                System.out.println(item[index].getId() + "   " + item[index].getName());
+        for (int index = 0; index < item.size(); index++) {
+            if (item.get(index) != null) {
+                System.out.println(item.get(index).getId() + "   " + item.get(index).getName());
             }
         }
     }

@@ -1,21 +1,18 @@
 package tracker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 import static java.util.List.copyOf;
 
 public class Tracker {
 
-    private final ArrayList<Item> items = new ArrayList<>();//Item[] items = new Item[100];
+    private final ArrayList<Item> items = new ArrayList<>();
+    //Item[] items = new Item[100];
     //private int positions = 0;
 
     private String generateId() {
         Random rd = new Random();
         return String.valueOf(rd.nextLong() + System.currentTimeMillis());
-
     }
 
     public Item add(Item item) {
@@ -24,19 +21,18 @@ public class Tracker {
         return item;
     }
 
-    public ArrayList<Item> findAll() {
-        ArrayList cloneItem = (ArrayList) items.clone();
-        return cloneItem;
-                  //copyOf(items);
+    public List<Item> findAll() {
+        //ArrayList cloneItem = (ArrayList) items.clone();
+        return items;
+        //copyOf(items);
         //ArraysList<Item>.copyOf(items, positions);
     }
-
 
     public ArrayList<Item> findByName(String key) {
         ArrayList<Item> newItemsArray = new ArrayList<>();
         //Item[] newItemsArray = new Item[positions];
         int newSize = 0;
-        for (Item x: newItemsArray
+        for (Item x : newItemsArray
         ) {
             newItemsArray.add(x);
         }
@@ -46,8 +42,8 @@ public class Tracker {
 //                newSize++;
 //            }
 //        }
-        ArrayList cloneItem = (ArrayList) items.clone();
-        return cloneItem;
+        //ArrayList cloneItem = (ArrayList) items.clone();
+        return items;
         //return ArrayList<Item>.copyOf(newItemsArray);
         //Arrays.copyOf(newItemsArray, newSize);
     }
@@ -69,50 +65,58 @@ public class Tracker {
         return result;
     }
 
-//    private int index(String id) {
-//        int rls = -1;
-//        for (int index = 0; index < positions; index++) {
-//            if (items[index].getId().equals(id)) {
-//                rls = index;
-//                break;
-//            }
-//        } return rls;
-//    }
+    private int index(String id) {
+        int rls = -1;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                rls = index;
+                break;
+            }
+        } return rls;
+    }
 
     private int indexOf(String id) {
         int rls = -1;
-        for (Item x: items
-             ) {
-            if (x.getId(id).equals(id)) {
-                rls = x;
-                break;
-            }
-        }
-//        for (int index = 0; index < positions; index++) {
-//            if (items.get(index).getId().equals(id)) {
-//                rls = index;
+//        for (Item x : items
+//        ) {
+//            if (x.getId(id).equals(id)) {
+//                rls = x;
 //                break;
 //            }
 //        }
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                rls = index;
+                break;
+            }
+        }
 
 //            if (items[index].getId().equals(id)) {
 //                rls = index;
 //                break;
         return rls;
-            }
-   // }
-//}
+    }
+
     public boolean delete(String id) {
         boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
-            System.arraycopy(items,index + 1, items, index, positions - index);
-            items[positions - 1] = null;
-            positions = positions - 1;
+            System.arraycopy(items, index + 1, items, index, items.size() - index);
+            items.get(items.size() - 1) == null;
+            items.size() = items.size() - 1;
+            //items[items.size() - 1] = null;
+            //items.size() = items.size() - 1;
             result = true;
         }
         return result;
     }
 
-
+    public class SortByUp {
+        public Item[] sortByUpMetod(Item[] items) {
+            System.out.println(items);
+            Arrays.sort(items);
+            System.out.println(items);
+            return items;
+        }
+    }
 }
