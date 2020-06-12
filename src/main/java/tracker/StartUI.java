@@ -12,9 +12,9 @@ public class StartUI {
 
     public static void criateItem(Input input, Tracker tracker) {
         String name = input.askStr("Enter Name: ");
-        List<Item> newItems = new ArrayList<>();
-        //Item item = new Item(name);
-        tracker.add(newItems);
+        //List<Item> newItems = new ArrayList<>();
+        Item item = new Item(name);
+        tracker.add(item);
                 //.add(newItems);
     }
     public static void repleseItem(Input input, Tracker tracker) {
