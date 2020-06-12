@@ -15,15 +15,11 @@ public class Tracker {
     }
     public Item add(Item item) {
         item.setId(generateId());
-        //items[positions++] = item;
-        return item;
+                return item;
     }
     public List<Item> findAll() {
-        //ArrayList cloneItem = (ArrayList) items.clone();
-        return items;
-        //copyOf(items);
-        //ArraysList<Item>.copyOf(items, positions);
-    }
+                return items;
+            }
     public List<Item> findByName(String key) {
         ArrayList<Item> newItemsArray = new ArrayList<>();
         //Item[] newItemsArray = new Item[positions];
@@ -52,7 +48,8 @@ public class Tracker {
         int index = indexOf(id);
         if (index != -1) {
             item.setId(id);
-            items.get(index) = item;
+            items.set(index, item);
+            //items.get(index) = item;
             //items[index] = item;
             result = true;
         }
@@ -94,8 +91,9 @@ public class Tracker {
         int index = indexOf(id);
         if (index != -1) {
             System.arraycopy(items, index + 1, items, index, items.size() - index);
-            items.get(items.size() - 1) == null;
-            items.size() = items.size() - 1;
+            items.remove(index);
+//                    get(items.size() - 1) == null;
+//            items.size() = items.size() - 1;
             //items[items.size() - 1] = null;
             //items.size() = items.size() - 1;
             result = true;

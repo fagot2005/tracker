@@ -12,8 +12,10 @@ public class StartUI {
 
     public static void criateItem(Input input, Tracker tracker) {
         String name = input.askStr("Enter Name: ");
-        Item item = new Item(name);
-        tracker.add(item);
+        List<Item> newItems = new ArrayList<>();
+        //Item item = new Item(name);
+        tracker.add(newItems);
+                //.add(newItems);
     }
     public static void repleseItem(Input input, Tracker tracker) {
         System.out.println("");
