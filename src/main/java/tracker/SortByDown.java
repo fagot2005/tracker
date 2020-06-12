@@ -6,10 +6,8 @@ import java.util.List;
 
 public class SortByDown implements Comparator<Item> {
 
-    public List<Item> sortByUp(Item[] items) {
-        System.out.println(items);
-        Collections.sort(items, Comparator<items>.reverseOrder());
-        System.out.println(items);
-        return items;
+    @Override
+    public int compare(Item o1, Item o2) {
+        return o1.getName().compareTo(o2.getName());
     }
 }
