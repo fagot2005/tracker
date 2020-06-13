@@ -7,8 +7,7 @@ import static java.util.List.copyOf;
 public class Tracker {
 
     private final List<Item> items = new ArrayList<>();
-    //Item[] items = new Item[100];
-    //private int positions = 0;
+
     private String generateId() {
         Random rd = new Random();
         return String.valueOf(rd.nextLong() + System.currentTimeMillis());
@@ -21,7 +20,7 @@ public class Tracker {
         return items;
     }
 
-        public List<Item> findByName(String key) {
+    public List<Item> findByName(String key) {
         ArrayList<Item> newItemsArray = new ArrayList<>();
         int newSize = 0;
         for (Item x : newItemsArray
@@ -41,8 +40,6 @@ public class Tracker {
         if (index != -1) {
             item.setId(id);
             items.set(index, item);
-            //items.get(index) = item;
-            //items[index] = item;
             result = true;
         }
         return result;
@@ -82,12 +79,8 @@ public class Tracker {
         boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
-            System.arraycopy(items, index + 1, items, index, items.size() - index);
+            //System.arraycopy(items, index + 1, items, index, items.size() - index);
             items.remove(index);
-//                    get(items.size() - 1) == null;
-//            items.size() = items.size() - 1;
-            //items[items.size() - 1] = null;
-            //items.size() = items.size() - 1;
             result = true;
         }
         return result;
