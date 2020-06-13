@@ -4,30 +4,32 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
 
-public class SortByDownTest  extends TestCase {
+
+public class SortByDownTest {
 
     @Test
     public void SortByDown() {
         List<Item> items = new ArrayList<>();
         items.add(new Item("AAA"));
         items.add(new Item("BBB"));
-        items.add(new Item("CCC"));
-        items.add(new Item("DDD"));
-        items.add(new Item("EEE"));
+        List<Item> excpected = new ArrayList<>();
+        excpected.add(new Item("AAA"));
+        excpected.add(new Item("BBB"));
         items.sort(new SortByDown());
-        items.forEach(item -> System.out.println(item.getName()));
+        assertEquals(items, excpected);
     }
 
     @Test
     public void SortByUp() {
         List<Item> items = new ArrayList<>();
-        items.add(new Item("MMM"));
+        items.add(new Item("AAA"));
         items.add(new Item("BBB"));
-        items.add(new Item("RRR"));
-        items.add(new Item("PPP"));
-        items.add(new Item("EEE"));
+        List<Item> excpected = new ArrayList<>();
+        excpected.add(new Item("AAA"));
+        excpected.add(new Item("BBB"));
         items.sort(new SortByUp());
-        items.forEach(item -> System.out.println(item.getName()));
+        assertEquals(items, excpected);
     }
 }

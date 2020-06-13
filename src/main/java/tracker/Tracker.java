@@ -21,7 +21,7 @@ public class Tracker {
         return items;
     }
 
-    public List<Item> findByName(String key) {
+        public List<Item> findByName(String key) {
         ArrayList<Item> newItemsArray = new ArrayList<>();
         int newSize = 0;
         for (Item x : newItemsArray
