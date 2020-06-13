@@ -27,8 +27,8 @@ public class SortByDownTest {
         items.add(new Item("AAA"));
         items.add(new Item("BBB"));
         List<Item> excpected = new ArrayList<>();
-        excpected.add(new Item("AAA"));
         excpected.add(new Item("BBB"));
+        excpected.add(new Item("AAA"));
         items.sort(new SortByUp());
         assertEquals(items, excpected);
     }
