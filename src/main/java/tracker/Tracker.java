@@ -45,34 +45,23 @@ public class Tracker {
         return result;
     }
 
-    private int index(String id) {
-        int rls = -1;
-        for (int index = 0; index < items.size(); index++) {
-            if (items.get(index).getId().equals(id)) {
-                rls = index;
-                break;
-            }
-        } return rls;
-    }
-    private int indexOf(String id) {
-        int rls = -1;
-//        for (Item x : items
-//        ) {
-//            if (x.getId(id).equals(id)) {
-//                rls = x;
+//    private int index(String id) {
+//        int rls = -1;
+//        for (int index = 0; index < items.size(); index++) {
+//            if (items.get(index).getId().equals(id)) {
+//                rls = index;
 //                break;
 //            }
-//        }
+//        } return rls;
+//    }
+    private int indexOf(String id) {
+        int rls = -1;
         for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId().equals(id)) {
                 rls = index;
                 break;
             }
         }
-
-//            if (items[index].getId().equals(id)) {
-//                rls = index;
-//                break;
         return rls;
     }
     public boolean delete(String id) {
