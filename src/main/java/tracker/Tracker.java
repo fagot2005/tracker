@@ -2,18 +2,17 @@ package tracker;
 
 import java.util.*;
 
-import static java.util.List.copyOf;
-
 public class Tracker {
 
     private final List<Item> items = new ArrayList<>();
 
     private String generateId() {
         Random rd = new Random();
-        return String.valueOf(rd.nextLong() + System.currentTimeMillis());
+        return String.valueOf(rd.nextInt() + System.currentTimeMillis());
     }
     public Item add(Item item) {
         item.setId(generateId());
+        items.add(item);
         return item;
     }
     public List<Item> findAll() {
@@ -45,15 +44,6 @@ public class Tracker {
         return result;
     }
 
-//    private int index(String id) {
-//        int rls = -1;
-//        for (int index = 0; index < items.size(); index++) {
-//            if (items.get(index).getId().equals(id)) {
-//                rls = index;
-//                break;
-//            }
-//        } return rls;
-//    }
     private int indexOf(String id) {
         int rls = -1;
         for (int index = 0; index < items.size(); index++) {
@@ -68,7 +58,6 @@ public class Tracker {
         boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
-            //System.arraycopy(items, index + 1, items, index, items.size() - index);
             items.remove(index);
             result = true;
         }

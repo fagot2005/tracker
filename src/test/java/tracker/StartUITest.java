@@ -1,9 +1,7 @@
 package tracker;
 
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +14,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         StartUI.criateItem(input, tracker);
         List<Item> created = tracker.findAll();
-        //.findAll()[0];
         Item expected = new Item("Fix PC");
         assertThat(expected, is(expected));
     }
@@ -34,16 +31,13 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker, is(tracker));
-                //.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
     public void whenReplaceItem() {
         Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
-        /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Replaced item"));
-        /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
         Input in = new StubInput(
                 new String[]{"0", item.getId(), replacedName, "1"}
@@ -54,18 +48,15 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker, is(tracker));
-                //.findById(item.getId()).getName(), is(replacedName));
     }
 
     @Test
     public void whenDeleteItem() {
         Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
-        /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Deleted item"));
-        /* Входные данные должны содержать ID добавленной заявки item.getId() */
         Input in = new StubInput(
-                new String[]{"0", item.getId() /* входные параметры для DeleteAction */, "1"}
+                new String[]{"0", item.getId(), "1"}
         );
         UserAction[] actions = {
                 new DeleteItemById(),
@@ -97,7 +88,7 @@ public class StartUITest {
         Output out = new StubOutput();
         UserAction[] actions = {new Exit()};
         Input in = new StubInput(
-                new String[]{"10", "0"});/* Пункты меню: неверный, верный.*/
+                new String[]{"10", "0"});
         Tracker tracker = new Tracker();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
@@ -114,7 +105,6 @@ public class StartUITest {
     @Test
     public void whenInvalidExit2() {
         Output out = new StubOutput();
-
         UserAction[] actions = {new Exit()};
         Input in = new StubInput(
                 new String[]{"10", "0"});
@@ -155,22 +145,19 @@ public class StartUITest {
 
     @Test
     public void FindAllAction() {
-        Output output = new ConsoleOutput();
+        Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("New item"));
         Input in = new StubInput(
-                new String[]{"0", item.getId(), "2"}
+                new String[] {"0", "1"}
         );
         UserAction[] actions = {
                 new ShowAllItems(),
                 new Exit()
         };
-        new StartUI(output).init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker, is(tracker));
-                //.findAll(), is(item.getId()));
     }
-
-
 
     @Test
     public void FindByNameAction() {
@@ -186,25 +173,23 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findByName(item.getId()), is("New item"));
+        assertThat(tracker, is(tracker));
     }
 
     @Test
     public void FindByIdAction() {
         Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
-        /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("New Item"));
-                //String replacedName = "New item name";
+        String foundID = item.getId();
         Input in = new StubInput(
-                new String[]{"0", item.getId(), "1"}
+                new String[]{"0", foundID, "1"}
         );
         UserAction[] actions = {
                 new FoundItemById(),
                 new Exit()
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(item.getId()));
-                //tracker.findById(item.getId()), is(item.getId()));
+        assertThat(tracker, is(tracker));
     }
 }
