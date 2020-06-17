@@ -10,6 +10,11 @@ public class FoundItemByName implements UserAction {
     }
 
     @Override
+    public boolean excecute(Input input, Tracker tracker, Output output) {
+        return false;
+    }
+
+    @Override
     public boolean excecute(Input input, Tracker tracker) {
         String name = input.askStr("Enter Name: ");
         List<Item> item = tracker.findByName(name);

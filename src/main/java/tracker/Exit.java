@@ -7,6 +7,11 @@ public class Exit implements  UserAction {
     }
 
     @Override
+    public boolean excecute(Input input, Tracker tracker, Output output) {
+        return false;
+    }
+
+    @Override
     public boolean excecute(Input input, Tracker tracker) {
         return false;
     }

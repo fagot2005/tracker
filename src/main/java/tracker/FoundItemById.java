@@ -7,6 +7,11 @@ public class FoundItemById implements UserAction {
     }
 
     @Override
+    public boolean excecute(Input input, Tracker tracker, Output output) {
+        return false;
+    }
+
+    @Override
     public boolean excecute(Input input, Tracker tracker) {
         String id = input.askStr("Enter ID: ");
         //Item item = new Item(name);

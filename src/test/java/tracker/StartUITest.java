@@ -7,16 +7,16 @@ import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
-    @Test
-    public void whenAddItem() {
-        String[] answers = {"Fix PC"};
-        Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI.criateItem(input, tracker);
-        List<Item> created = tracker.findAll();
-        Item expected = new Item("Fix PC");
-        assertThat(expected, is(expected));
-    }
+//    @Test
+//    public void whenAddItem() {
+//        String[] answers = {"Fix PC"};
+//        Input input = new StubInput(answers);
+//        Tracker tracker = new Tracker();
+//        StartUI.criateItem(input, tracker);
+//        List<Item> created = tracker.findAll();
+//        Item expected = new Item("Fix PC");
+//        assertThat(expected, is(expected));
+//    }
 
     @Test
     public void whenCreateItem() {
