@@ -14,7 +14,8 @@ public final Output out;
 
     @Override
     public boolean excecute(Input input, Tracker tracker, Output output) {
-        return false;
+        out.prinln("Item was added");
+        return excecute(input, tracker);
     }
 
     @Override

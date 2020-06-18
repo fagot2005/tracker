@@ -20,7 +20,8 @@ public class StartUITest {
 
     @Test
     public void whenCreateItem() {
-        Output output = new ConsoleOutput();
+        Output output = new StubOutput();
+//        Output output = new ConsoleOutput();
         Input in = new StubInput(
                 new String[]{"0", "Item name", "1"}
         );
@@ -30,7 +31,14 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker, is(tracker));
+//        assertThat(tracker, is(tracker));
+        assertThat(output.toString(), is("Menu." + System.lineSeparator() +
+                "0.  Create new Item" + System.lineSeparator() +
+                "1.  Exit " + System.lineSeparator() +
+                "Item was added" + System.lineSeparator() +
+                "Menu." + System.lineSeparator() +
+                "0.  Create new Item" + System.lineSeparator() +
+                "1.  Exit " + System.lineSeparator()));
     }
 
     @Test
