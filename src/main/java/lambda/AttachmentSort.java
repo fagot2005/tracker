@@ -11,10 +11,10 @@ public class AttachmentSort {
                 new Attachment("image 2", 34),
                 new Attachment("image 3", 13)
         );
-        Comparator<Attachment> cmpSize =  (left, right) -> left.getSize() - right.getSize();
+        Comparator<Attachment> cmpSize =  (left, right) -> right.getSize() - left.getSize();
         attachments.sort(cmpSize);
         System.out.println(attachments);
-        Comparator<Attachment> cmpDescSize =  (Attachment left, Attachment right) -> right.getName().compareTo(left.getName());
+        Comparator<Attachment> cmpDescSize =  (Attachment left, Attachment right) -> left.getName().compareTo(right.getName());
         attachments.sort(cmpDescSize);
         System.out.println(attachments);
     }
