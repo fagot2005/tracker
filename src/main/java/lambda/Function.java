@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Function {
-    public static List<Double> diapason(int start, int end, Function2<Double, Double> func) {
+    public static List<Double> diapason(int start, int end) {
         List<Double> arrayList = new ArrayList<>();
-
-        for (int i = start; i < end; i++) {
-            Double resalt = x -> 2 * x + 1;
-            arrayList.add(resalt);
+        for (double i = start; i < end; i++) {
+            //Double resalt = x -> 2 * x + 1;
+            //Func apply = i -> 2.0 * i + 1.0;
+            arrayList.add(Func.apply(i) = (i) -> 2 * (i) + 1);
         }
         return arrayList;
     }
 
     @FunctionalInterface
-    public interface Function2 {
-        public double func(double x) {
-            return 2 * x + 1;
+    public interface Func {
+        static double apply(double x) {
         }
     }
 }
