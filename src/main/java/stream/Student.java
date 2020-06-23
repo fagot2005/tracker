@@ -7,13 +7,10 @@ public class Student {
     private int score;
     private String sureName;
 
-
     public Student(int score, String sureName) {
         this.score = score;
         this.sureName = sureName;
     }
-
-
 
     public int getScore() {
         return score;

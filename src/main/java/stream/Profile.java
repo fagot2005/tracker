@@ -20,8 +20,4 @@ public class Profile {
     public Address getAddress() {
         return address;
     }
-
-    public List<Profile> clients() {
-        List<Profile> clients = new ArrayList<>();
-    }
 }
