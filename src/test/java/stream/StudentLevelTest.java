@@ -36,4 +36,14 @@ public class StudentLevelTest {
         List<Student> expected = List.of(new Student(28,"Pety"));
         assertThat(StudentLevel.levelOf(input, 10), is(expected));
     }
+
+    @Test
+    public void whenStreamIsEmty() {
+        List<Student> input = new ArrayList<>();
+        input.add(null);
+        input.add(new Student(28, "Pety"));
+        List<Student> expected = List.of();
+        //System.out.println(expected.);
+        assertThat(StudentLevel.levelOf(input, 100), is(expected));
+    }
 }
