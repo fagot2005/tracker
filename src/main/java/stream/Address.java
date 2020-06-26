@@ -1,12 +1,29 @@
 package stream;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Address {
     private String city;
     private String street;
     private int house;
     private int apartments;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return house == address.house &&
+                apartments == address.apartments &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(street, address.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, house, apartments);
+    }
 
     public Address(String city, String street, int house, int apartments) {
         this.city = city;
