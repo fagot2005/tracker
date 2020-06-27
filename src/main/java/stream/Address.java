@@ -3,7 +3,7 @@ package stream;
 import java.util.List;
 import java.util.Objects;
 
-public class Address {
+public class Address  {
     private String city;
     private String street;
     private int house;
@@ -70,4 +70,9 @@ public class Address {
             new Address("Lviv", "Forty street", 445, 767),
             new Address("Rome", "Fifty street", 7, 22),
             new Address("Rome", "Six street", 4, 5));
+
+//    @Override
+//    public int compareTo(Address address) {
+//        return this.city.compareTo(address.getCity());
+//    }
 }
