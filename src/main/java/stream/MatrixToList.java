@@ -1,5 +1,6 @@
 package stream;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,5 +19,9 @@ public class MatrixToList {
 
     public static List<Integer> matrixStream (List<List<Integer>> matrix) {
         return matrix.stream().flatMap(e -> e.stream()).collect(Collectors.toList());
+    }
+
+    public static List<Integer> matrixStream (Integer[][] matrix) {
+        return Arrays.stream(matrix).flatMap(Arrays::stream).collect(Collectors.toList());
     }
 }
