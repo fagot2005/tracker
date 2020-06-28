@@ -16,7 +16,7 @@ public class MatrixToListTest {
                 List.of(7, 8),
                 List.of(9, 10));
         List<Integer> matrixToList = MatrixToList.matrixStream(matrix);
-        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         assertThat(matrixToList, is(expected));
     }
 
