@@ -52,9 +52,9 @@
 -- (5, 'Fiat', 1, 1, 1);
 
 -- select car.id, car.name, body.name as body, engine.name as engine, transmission.name as transmission  from car
--- left join body on car.body_id = body.id
--- left join engine on car.engine_id = engine.id
--- left join transmission on car.transmission_id = transmission.id
+-- inner join body on car.body_id = body.id
+-- inner join engine on car.engine_id = engine.id
+-- inner join transmission on car.transmission_id = transmission.id
 
 -- select body.id, body.name as body from body
 -- left join car on car.body_id = body.id
