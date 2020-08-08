@@ -9,23 +9,23 @@ import static org.hamcrest.core.IsNull.nullValue;
 public class WhenReplac {
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker memTracker = new MemTracker();
         Item bug = new Item("Bug");
-        tracker.add(bug);
+        memTracker.add(bug);
         String id = bug.getId();
         Item bugWithDesc = new Item("Bug with description");
-        tracker.replase(id, bugWithDesc);
-        assertThat(tracker.findById(id).getName(), is("Bug with description"));
+        memTracker.replase(id, bugWithDesc);
+        assertThat(memTracker.findById(id).getName(), is("Bug with description"));
     }
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker memTracker = new MemTracker();
         Item bug = new Item("Bug");
-        tracker.add(bug);
+        memTracker.add(bug);
         String id = bug.getId();
-        tracker.delete(id);
-        assertThat(tracker.findById(id), is(nullValue()));
+        memTracker.delete(id);
+        assertThat(memTracker.findById(id), is(nullValue()));
     }
 
 //    @Test

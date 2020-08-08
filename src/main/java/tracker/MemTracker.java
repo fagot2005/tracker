@@ -2,7 +2,7 @@ package tracker;
 
 import java.util.*;
 
-public class Tracker {
+public class MemTracker {
 
     private final List<Item> items = new ArrayList<>();
 

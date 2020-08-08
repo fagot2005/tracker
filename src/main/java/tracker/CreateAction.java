@@ -13,13 +13,13 @@ public final Output out;
     }
 
     @Override
-    public boolean excecute(Input input, Tracker tracker, Output output) {
+    public boolean excecute(Input input, Store tracker, Output output) {
         out.prinln("Item was added");
         return excecute(input, tracker);
     }
 
     @Override
-    public boolean excecute(Input input, Tracker tracker) {
+    public boolean excecute(Input input, Store tracker) {
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
