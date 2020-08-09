@@ -4,15 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class ImportDB {
+    public static final String Table_Create =
+            "create table if not exists users(id serial primary key, " +
+                    "name varchar(255), email varchar(255));";
 
     private Properties cfg;
     private String dump;
@@ -47,10 +47,15 @@ public class ImportDB {
                 cfg.getProperty("jdbc.username"),
                 cfg.getProperty("jdbc.password")
         )) {
+            try (Statement st = cnt.createStatement()) {
+                st.execute(Table_Create);
+            }
+
             for (User user : users) {
-                try (PreparedStatement ps = cnt.prepareStatement("insert info users ...")) {
+                try (PreparedStatement ps = cnt.prepareStatement(
+                        "insert into users(name, email) values(?, ?);")) {
                     ps.setString(1, user.name);
-                    ps.setString(1, user.email);
+                    ps.setString(2, user.email);
                     ps.execute();
                 }
             }
