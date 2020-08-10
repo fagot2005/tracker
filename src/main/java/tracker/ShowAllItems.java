@@ -16,7 +16,6 @@ public class ShowAllItems implements UserAction {
 
     @Override
     public boolean excecute(Input input, Store tracker) {
-        //String name = input.askStr("Enter name");
         List<Item> item = tracker.findAll();
         System.out.println("===Id====          ===Name===");
         for (int index = 0; index < item.size(); index++) {

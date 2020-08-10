@@ -2,7 +2,7 @@ package tracker;
 
 import java.util.*;
 
-public class MemTracker {
+public class MemTracker implements Store {
 
     private final List<Item> items = new ArrayList<>();
 
@@ -10,11 +10,25 @@ public class MemTracker {
         Random rd = new Random();
         return String.valueOf(rd.nextInt() + System.currentTimeMillis());
     }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
     public Item add(Item item) {
         item.setId(generateId());
         items.add(item);
         return item;
     }
+
+    @Override
+    public boolean replace(String id, Item item) {
+        int index = indexOf(id);
+        return index == -1;
+    }
+
     public List<Item> findAll() {
         return items;
     }
@@ -62,5 +76,10 @@ public class MemTracker {
             result = true;
         }
         return result;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }
