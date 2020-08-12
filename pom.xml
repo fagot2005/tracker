@@ -39,6 +39,16 @@
             <artifactId>jsoup</artifactId>
             <version>1.12.1</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.30</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -88,7 +98,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.6.2</version>
                 <configuration>
-                    <changeLogFile>${basedir}/src/main/java/db/master.xml</changeLogFile>
+                    <changeLogFile>${basedir}/db/master.xml</changeLogFile>
                     <url>${db.url}</url>
                     <driver>${db.driver}</driver>
                     <username>${db.username}</username>
@@ -107,37 +117,37 @@
     </build>
 
 
-<profiles>
-<profile>
-    <id>test</id>
-    <properties>
-        <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
-        <db.username>postgres</db.username>
-        <db.password>0984343561q</db.password>
-        <db.driver>org.postgresql.Driver</db.driver>
-    </properties>
-</profile>
-<profile>
-    <id>production</id>
-    <properties>
-        <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
-        <db.username>postgres</db.username>
-        <db.password>0984343561q</db.password>
-        <db.driver>org.postgresql.Driver</db.driver>
-    </properties>
-</profile>
-    <profile>
-        <id>travis</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <db.url>jdbc:postgresql://localhost/tracker</db.url>
-            <db.username>postgres</db.username>
-            <db.password></db.password>
-            <db.driver>org.postgresql.Driver</db.driver>
-        </properties>
-    </profile>
-</profiles>
+    <profiles>
+        <profile>
+            <id>travis</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.url>jdbc:postgresql://localhost/tracker</db.url>
+                <db.username>postgres</db.username>
+                <db.password>0984343561q</db.password>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
+                <db.username>postgres</db.username>
+                <db.password>0984343561q</db.password>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <db.url>jdbc:postgresql://127.0.0.1:5432/tracker</db.url>
+                <db.username>postgres</db.username>
+                <db.password>0984343561q</db.password>
+                <db.driver>org.postgresql.Driver</db.driver>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

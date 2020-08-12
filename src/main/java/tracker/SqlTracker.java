@@ -2,7 +2,6 @@ package tracker;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.job4j.tracker.model.Item;
 
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -15,6 +14,13 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
     private Connection cn;
+
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
 
     private static final Logger LOG = LoggerFactory.getLogger(SqlTracker.class.getName());
     private static final String INSERT_REQUEST = "insert into items(name) values(?) returning id;";
@@ -34,7 +40,7 @@ public class SqlTracker implements Store {
         LOG.debug("Init data");
         try {
             LOG.debug("Reading init file");
-            List<String> requests = Files.readAllLines(Paths.get("./db/insert.sql"));
+            List<String> requests = Files.readAllLines(Paths.get("src/db/insert.sql"));
             LOG.debug("Reading completed. Requests: {}", requests.size());
             LOG.debug("Insert data");
             try (Statement smt = cn.createStatement()) {
@@ -53,7 +59,7 @@ public class SqlTracker implements Store {
         LOG.debug("Init table");
         LOG.debug("Read create.sql");
         try {
-            List<String> requests = Files.readAllLines(Path.of("./db/create.sql"));
+            List<String> requests = Files.readAllLines(Path.of("src/db/create.sql"));
             LOG.debug("Reading completed");
             LOG.debug("Requests: {}, {}", requests.get(0), requests.get(1));
             LOG.debug("Try to execute requests ...");
